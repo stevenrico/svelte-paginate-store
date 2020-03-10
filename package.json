@@ -1,0 +1,38 @@
+{
+  "name": "svelte-paginate-store",
+  "version": "0.1.1",
+  "description": "Create a svelte store with pagination",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "svelte": "src/index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "rollup -c rollup.test.config.js && jest spec"
+  },
+  "keywords": [
+    "svelte",
+    "store",
+    "pagination",
+    "paginate"
+  ],
+  "author": "Steven Rico",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^11.0.2",
+    "@rollup/plugin-multi-entry": "^3.0.0",
+    "@rollup/plugin-node-resolve": "^7.1.1",
+    "jest": "^25.1.0",
+    "rollup": "^2.0.2",
+    "rollup-plugin-terser": "^5.2.0",
+    "svelte": "^3.19.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stevenrico/svelte-paginate-store.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stevenrico/svelte-paginate-store/issues"
+  },
+  "homepage": "https://github.com/stevenrico/svelte-paginate-store"
+}
