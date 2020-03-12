@@ -3,9 +3,11 @@ import paginateStore from '../index'
 
 describe('add data to an exisitng store:', () => {
   let mainStore
-  let mockData = []
+  let mockData
 
   beforeEach(() => {
+    mockData = []
+
     for (let i = 1; i <= 16; i++) mockData.push({ id: i })
 
     mainStore = paginateStore(mockData, { store: true })
@@ -29,6 +31,17 @@ describe('add data to an exisitng store:', () => {
 
   describe('validate added data:', () => {
     describe('data !== array:', () => {
+      let consoleOutput
+
+      beforeEach(() => {
+        consoleOutput = []
+        console.warn = output => consoleOutput.push(output)
+      })
+
+      const warnReset = console.warn
+
+      afterEach(() => (console.warn = warnReset))
+
       test('if data type is a match it displays a warning and adds data to the store', () => {
         const { addToStore } = mainStore
 
@@ -38,20 +51,12 @@ describe('add data to an exisitng store:', () => {
 
         const { store } = get(mainStore)
 
-        const spy = jest.spyOn(console, 'warn').mockImplementation()
-
-        console.warn(
-          'WARNING: Data added to store is not an array, the data has been added to the store because the data type is a match. Please check implementation.'
-        )
-
-        expect(console.warn).toHaveBeenCalledTimes(1)
-        expect(console.warn).toHaveBeenCalledWith(
-          'WARNING: Data added to store is not an array, the data has been added to the store because the data type is a match. Please check implementation.'
-        )
-
         expect(Array.isArray(store)).toBe(true)
         expect(store.length).toBe(mockData.length + 1)
         expect(store.pop()).toEqual({ id: 17 })
+        expect(consoleOutput).toEqual([
+          'WARNING: Data added to store is not an array, the data has been added to the store because the data type is a match. Please check implementation.'
+        ])
       })
 
       test("if data type doesn't match addToStore throws an error", () => {
