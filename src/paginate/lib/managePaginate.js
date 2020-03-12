@@ -35,7 +35,19 @@ export function goToPage(store) {
     store.update(prevState => {
       let { currentPage, totalPages } = prevState
 
-      if (value < 0 || value > totalPages) return prevState
+      if (typeof value !== 'number' || value <= 0) {
+        console.warn(
+          'WARNING: goToPage() accepts positive integers only. Check your implementation.'
+        )
+        return prevState
+      }
+
+      if (value > totalPages) {
+        console.warn(
+          'WARNING: the argument given in goToPage() exceeds totalPages. Check your implementation.'
+        )
+        return prevState
+      }
 
       currentPage = value
 
