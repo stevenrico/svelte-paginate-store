@@ -38,6 +38,8 @@ Edit 🖊️
 
 ## Features & Code
 
+[Live demo (REPL)](https://svelte.dev/repl/cf2646692668407a8e62d1f99ac81368?version=3.35.0)
+
 ### Paginate Data and Store Creation
 
 ./src/store.js
